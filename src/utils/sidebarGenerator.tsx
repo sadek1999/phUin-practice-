@@ -12,12 +12,14 @@ export const SidebarGenerator=(items:TUserPath[],role:string)=>{
             })
         }
         if(item.children){
-            item.children.map((child)=>{
-                acc.push({
-                    key:child.name,
-                    label:<NavLink to={`/${role}/${child.path}`}>{child.name}</NavLink>
-                })
-            })
+            acc.push({
+                key: item.name,
+                label: item.name,
+                children: item.children.map((child) => ({
+                  key: child.name,
+                  label: <NavLink to={`/${role}/${child.path}`}>{child.name}</NavLink>,
+                })),
+              });
         }
         return acc 
     },[])
